@@ -1,0 +1,10 @@
+# 每日科普文章定时任务
+# 每天早上 8 点自动生成科普文章
+
+# 添加到 crontab: crontab /path/to/this/file
+
+# 每天早上 8:00 生成科普文章
+0 8 * * * cd /Users/aiagent_master/.openclaw/workspace-content && /usr/bin/python3 tools/daily_science_article.py >> /tmp/science_article.log 2>&1
+
+# 生成后自动提交到博客仓库
+0 8 * * * cd /Users/aiagent_master/.openclaw/workspace-blog && git add -A && git commit -m "📝 每日科普文章 $(date +%%Y-%%m-%%d)" && git push
